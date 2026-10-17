@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "raw-clean"
+version = "0.1.0.dev0"
+description = "Safely preserve selected RAW photographs and quarantine the rest"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Maciek Kalisiak" },
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+]
+
+[project.scripts]
+raw-clean = "raw_clean.cli:main"
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
