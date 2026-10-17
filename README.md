@@ -12,8 +12,8 @@ raw-clean quarantine SHOOT_DIR
 ```
 
 The project is currently at the initial scaffolding stage. **The command does not yet scan
-or modify photographs.** See [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md) for the design,
-safety rules, and staged implementation plan.
+or modify photographs.** See [DESIGN.md](DESIGN.md) for the workflow and safety model, and
+[IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md) for the staged implementation plan.
 
 ## Development
 
