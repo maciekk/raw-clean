@@ -170,6 +170,10 @@ or a generic file-operation framework.
 
 ## Implementation stages
 
+Current status: Stage 0 has been completed against current darktable source and anonymized
+fixtures, and Stage 1 is implemented. Checking an XMP sidecar produced by the user's installed
+darktable remains a useful integration check when one becomes available.
+
 ### Stage 0 — Confirm metadata and operation details
 
 - Collect small, anonymized darktable-generated XMP fixtures for:
@@ -185,6 +189,21 @@ or a generic file-operation framework.
 
 Metadata fixtures should be checked into `tests/fixtures/`. They are integration examples,
 not a promise that every future darktable version uses the same representation.
+
+Decisions:
+
+- Initial RAW extensions: RAF, CR2, CR3, NEF, ARW, ORF, RW2, and DNG.
+- Purple is numeric label `4` in darktable's `darktable:colorlabels` RDF sequence. The
+  standard XMP `Label="Purple"` form is also recognized because darktable imports it.
+- Sidecars use the complete image filename plus `.xmp`, for example `DSCF1234.RAF.xmp`.
+- Exit `0` means the requested operation completed; for scan, this requires a complete plan
+  with no blocked RAWs. Exit `1` requests attention, including unsafe input, blocked RAWs,
+  an execution failure, or declining an operation. Exit `2` is reserved for command-line
+  usage errors.
+- Planned confirmation text is:
+  `Proceed with N promotions and N ordinary RAW quarantine moves? [y/N]`, followed when
+  needed by `Also quarantine N RAWs without matching JPEGs? [y/N]`. Only an explicit `y` or
+  `yes`, case-insensitively, approves a prompt; EOF and empty input decline.
 
 ### Stage 1 — Complete read-only planner
 
